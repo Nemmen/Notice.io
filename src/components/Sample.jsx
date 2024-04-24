@@ -2,21 +2,27 @@ import React, { useRef, useState } from "react";
 import html2canvas from "@nidi/html2canvas";
 import jsPDF from "jspdf";
 import bg from "../assets/bgtu.jpg";
+import axios from "axios";
 
 const Sample = () => {
   const divRef = useRef(null);
   const [data, setData] = useState({
     reff: "",
     date: "",
-    notification: "",
+    description: "",
   });
 
   const changeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const printDocument = () => {
+  const printDocument = async () => {
     const input = divRef.current;
+    try{
+      const respone = await axios("http://localhost:5000/notice",{})
+    }catch(err){
+      console.log(err)
+    }
 
     html2canvas(input, { scrollY: -window.scrollY }).then((canvas) => {
       const imgData = canvas.toDataURL("image/jpeg", 1.0);
@@ -25,6 +31,7 @@ const Sample = () => {
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
       pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
+     
       pdf.save("download.pdf");
     });
   };
@@ -91,8 +98,8 @@ const Sample = () => {
         </p>
         <p className="">
         <textarea
-          name="notification"
-          value={data.notification}
+          name="description"
+          value={data.description}
           className="absolute top-[400px] left-[200px] w-[500px] bg-transparent h-[400px] "
           placeholder="Enter your notification here"
           onChange={changeHandler}

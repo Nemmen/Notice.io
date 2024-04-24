@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({setUser}) => {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -31,6 +31,7 @@ const Login = () => {
         navigate("/student")
       }
       toast.success(response.data.message);
+      setUser(response.data.user)
     } catch (err) {
       toast.error(err.response.data.message);
     }

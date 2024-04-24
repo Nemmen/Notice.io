@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useState} from "react";
 import Login from "./components/Login";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Signup from "./components/Signup";
@@ -10,10 +10,11 @@ import Event from "./components/Event";
 import Sample from "./components/Sample";
 
 function App() {
+  const [user, setUser] = useState(null)
   const router = createBrowserRouter([
     {
       path: "/login",
-      element: <Login />,
+      element: <Login setUser={setUser} />,
     },
     {
       path: "/",
@@ -25,7 +26,7 @@ function App() {
       children: [
         {
           path: "/admin/",
-          element: <Fine />,
+          element: <Fine  />,
         },
         {
           path: "/admin/published",
@@ -37,7 +38,7 @@ function App() {
         },
         {
           path: "/admin/notification",
-          element: <Sample />,
+          element: <Sample user={user} />,
         },
       ],
     },
