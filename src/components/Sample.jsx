@@ -3,13 +3,16 @@ import html2canvas from "@nidi/html2canvas";
 import jsPDF from "jspdf";
 import bg from "../assets/bgtu.jpg";
 import axios from "axios";
+import { toast } from "react-toastify";
 
-const Sample = () => {
+const Sample = ({user}) => {
   const divRef = useRef(null);
   const [data, setData] = useState({
+    title:"",
     reff: "",
     date: "",
     description: "",
+    postedBy: user._id,
   });
 
   const changeHandler = (e) => {
@@ -19,9 +22,11 @@ const Sample = () => {
   const printDocument = async () => {
     const input = divRef.current;
     try{
-      const respone = await axios("http://localhost:5000/notice",{})
+      const respone = await axios("http://localhost:9000/notice/unique",data);
+      toast.success(respone.data.message)
+
     }catch(err){
-      console.log(err)
+      toast.error(err.response.data.message)
     }
 
     html2canvas(input, { scrollY: -window.scrollY }).then((canvas) => {
@@ -58,6 +63,10 @@ const Sample = () => {
           Publish
         </button>
       </div>
+      <div className="my-4 py-2 text-center" >
+        Enter title for the notification :  {" "}
+        <input name="title" className="p-2" value={data.title} onChange={changeHandler} required type="text" />
+      </div>
       <div
         ref={divRef}
         className="mt4 relative"
@@ -92,7 +101,7 @@ const Sample = () => {
         </p>
         <p
           className="absolute font-semibold text-4xl top-[280px] left-[300px]"
-          style={{ color: "white" }}
+         
         >
           NOTIFICATION
         </p>
