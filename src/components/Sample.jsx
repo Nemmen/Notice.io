@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import html2canvas from "html2canvas";
+import html2canvas from "@nidi/html2canvas";
 import jsPDF from "jspdf";
 import bg from "../assets/bgtu.jpg";
 
@@ -40,13 +40,13 @@ const Sample = () => {
         </button>
         <button
           className="bg-red-500 hover:bg-red-700 mx-2 text-white font-bold py-2 px-4 rounded"
-          onClick={() => printDocument()}
+         
         >
           Share
         </button>
         <button
           className="bg-red-500 hover:bg-red-700 mx-2 text-white font-bold py-2 px-4 rounded"
-          onClick={() => printDocument()}
+          
         >
           Publish
         </button>
@@ -65,7 +65,7 @@ const Sample = () => {
         <p className="absolute top-[180px] left-[100px] text-[15px]">
           Ref. No:{" "}
           <input
-            className="p-2 bg-transparent inline-block leading-[29px]  border-0 ring-0 focus:ring-0 focus:border-0 focus:ring-transparent focus:border-transparent align-middle"
+            className="relative top-[3px] left-1 pb-2 bg-transparent inline-block leading-[29px]  border-0 ring-0 focus:ring-0 focus:border-0 focus:ring-transparent focus:border-transparent align-middle"
             type="text"
             value={data.reff}
             onChange={changeHandler}
@@ -77,6 +77,7 @@ const Sample = () => {
           Date:{" "}
           <input
             name="date"
+            className="h-[max-content] leading-relaxed relative top-[3px] left-1 align-middle bg-transparent border-0 ring-0 focus:ring-0 focus:border-0 focus:ring-transparent focus:border-transparent pb-2 inline-block "
             value={data.date}
             onChange={changeHandler}
             type="date"
@@ -88,13 +89,15 @@ const Sample = () => {
         >
           NOTIFICATION
         </p>
+        <p className="">
         <textarea
           name="notification"
           value={data.notification}
-          className="absolute top-[400px] left-[200px] w-[500px] bg-transparent h-[400px]"
+          className="absolute top-[400px] left-[200px] w-[500px] bg-transparent h-[400px] "
           placeholder="Enter your notification here"
           onChange={changeHandler}
         />
+        </p>
       </div>
     </div>
   );
