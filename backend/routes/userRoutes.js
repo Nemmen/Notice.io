@@ -3,13 +3,14 @@ const router = express.Router()
 
 
 
-const { login, signup } = require("../controller/auth")
+const { login, signup , getusers } = require("../controller/auth")
 
 const { auth, isStudent, isAdmin } = require("../middleware/auth")
 
 // router.post("/login", login)
 router.post("/signup", signup)
 router.post("/login", login)
+router.get("/getusers", getusers)
 
 //protected route
 

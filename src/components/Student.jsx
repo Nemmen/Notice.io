@@ -3,6 +3,8 @@ import axios from "axios";
 import moment from "moment";
 import { toast } from "react-toastify";
 import bg from "../assets/bgtu.jpg";
+import Navbar from "./materialui/Navbar";
+
 
 const Student = () => {
   const [unique, setUnique] = useState([]);
@@ -29,9 +31,7 @@ const Student = () => {
 
   return (
     <div className="bg-slate-200">
-      <div className="w-full bg-white h-[max-conent] py-6 border-b  px-3 flex justify-center items-center">
-        <p className="text-xl">Notice Board</p>
-      </div>
+      <Navbar />
       <h1 className="text-3xl text-center my-3 py-3">Notification</h1>
       <div className="flex flex-wrap gap-3 justify-center">
         {unique.map((item, index) => (

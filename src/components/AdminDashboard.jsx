@@ -20,78 +20,52 @@ import {
 import Navbar from "./materialui/Navbar";
 
 const Admin = ({user , setUser}) => {
-  const [par, setPar] = useState("admin/");
+  const [par, setPar] = useState("moderator/");
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/admin/") {
-      setPar("admin/");
+    if (location.pathname === "/moderator/") {
+      setPar("moderator/");
     }
-    if (location.pathname === "/admin/published") {
-      setPar("published");
+    if (location.pathname === "/moderator/managenotice") {
+      setPar("managenotice");
     }
-    if (location.pathname === "/admin/profile") {
+    if (location.pathname === "/moderator/profile") {
       setPar("profile");
     }
   }, [location]);
 
-  const bg = par === "admin/" ? "bg-slate-200" : "";
-  const bgg = par === "published" ? "bg-slate-200" : "";
+  const bg = par === "moderator/" ? "bg-slate-200" : "";
+  const bgg = par === "managenotice" ? "bg-slate-200" : "";
   const bggg = par === "profile" ? "bg-slate-200" : "";
 
-  const paraa = (par) => {
-    setPar(par);
-  };
+
 
   return (
     <div className="">
       <Navbar user={user}  setUser={setUser}/>
       <div className="fixed bottom-0 right-0 left-0 top-[75px] px-2 py-4 grid grid-cols-12">
         <div className="col-span-2 text-center sticky top-0">
-          {/* <Link
-            to="/admin/"
-            onClick={() => {
-              paraa("admin/");
-            }}
-          >
-            <p className={bg}>Draft a Notice</p>
-          </Link>
-          <Link
-            to="/admin/published"
-            onClick={() => {
-              paraa("published");
-            }}
-          >
-            <p className={bgg}>Published Notice</p>
-          </Link>
-          <Link
-            to="/admin/profile"
-            onClick={() => {
-              paraa("profile");
-            }}
-          >
-            <p className={bggg}>Profile</p>
-          </Link> */}
           <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
             <List>
-              <Link to="/admin/">
+              <Link to="/moderator/" onClick={()=> setPar("moderator/")}>
                 <ListItem className={bg}>
                   <ListItemPrefix>
                     <PresentationChartBarIcon className="h-5 w-5" />
                   </ListItemPrefix>
-                  Draft a Notice
+                  Manage User
                 </ListItem>
               </Link>
-              <Link to="/admin/published">
+              <Link to="/moderator/managenotice"  onClick={()=> setPar("managenotice")}>
                 <ListItem className={bgg}>
                   <ListItemPrefix>
                     <ShoppingBagIcon className="h-5 w-5" />
                   </ListItemPrefix>
-                  Published Notice
+                  Manage Notice
                 </ListItem>
               </Link>
 
-              <Link to="/admin/profile">
+              <Link to="/moderator/profile" onClick={()=> setPar("profile")}>
                 <ListItem className={bggg}>
                   <ListItemPrefix>
                     <UserCircleIcon className="h-5 w-5" />

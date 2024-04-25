@@ -63,7 +63,7 @@ exports.login = async (req, res) => {
 }
 exports.signup = async (req, res) => {
     try {
-        const { name, email, password , role } = req.body
+        const { name, email, password , role ,batch } = req.body
         const existingUser = await User.findOne({ email })
         if (existingUser) {
             return res.status(400).json({
@@ -83,7 +83,7 @@ exports.signup = async (req, res) => {
         }
 
         const newUser = await User.create({
-            name, email, password: hashedpassword, role
+            name, email, password: hashedpassword, role,batch
         })
 
         return res.status(200).json({
@@ -96,6 +96,23 @@ exports.signup = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "plz try again later"
+        })
+    }
+}
+
+exports.getusers = async(req,res) =>{
+    try{
+        const users = await User.find()
+        res.status(200).json({
+            success:true,
+            users
+        })
+
+
+    }catch(e){
+        res.status(500).json({
+            success:false,
+            message:"internal server error"
         })
     }
 }

@@ -30,7 +30,10 @@ const Login = ({setUser}) => {
       if (response.data.user.role === "Student") {
         navigate("/student")
       }
-      toast.success(response.data.message);
+      if (response.data.user.role === "Moderator") {
+        navigate("/moderator")
+      }
+      toast.success("user Logged In Successfully");
       setUser(response.data.user)
     } catch (err) {
       toast.error(err.response.data.message);
@@ -38,10 +41,13 @@ const Login = ({setUser}) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
-      <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center sm:py-12">
+      <div className="w-[400px]">
+        <img src="https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg " alt="" className="rounded-md w-[400px]" />
+      </div>
+      <div className="p-10 xs:p-0 md:w-full md:max-w-md">
         <h1 className="font-bold text-center text-2xl mb-5">
-          Hello There <span className="text-blue-500">!</span>
+         Login to Check Notice <span className="text-blue-500">!</span>
         </h1>
         <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
           <form>
