@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
-
 const Admin = () => {
   
   const [par, setPar] = useState("admin/");

@@ -31,7 +31,7 @@ function App() {
         },
         {
           path: "/admin/published",
-          element: <Admission />,
+          element: <Admission  user={user}/>,
         },
         {
           path: "/admin/profile",

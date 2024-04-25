@@ -1,15 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ToastContainer } from 'react-toastify';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ToastContainer } from "react-toastify";
+import { ThemeProvider } from "@material-tailwind/react";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
-    <ToastContainer/>
+    <ThemeProvider>
+      <App />
+      <ToastContainer />
+    </ThemeProvider>
   </React.StrictMode>
 );
 
