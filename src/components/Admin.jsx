@@ -3,6 +3,19 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Admin = () => {
   const [par, setPar] = useState("admin/");
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/admin/") {
+      setPar("admin/");
+    }
+    if (location.pathname === "/admin/published") {
+      setPar("published");
+    }
+    if (location.pathname === "/admin/profile") {
+      setPar("profile");
+    }
+  }, [location]);
 
   const bg =
     par === "admin/"
@@ -18,6 +31,8 @@ const Admin = () => {
       : "mb-5 mt-2 text-xl py-2 mx-2 cursor-pointer hover:bg-gray-100";
 
   const paraa = (par) => {
+   
+
     setPar(par);
   };
 

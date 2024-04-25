@@ -8,6 +8,7 @@ import Fine from "./components/Fine";
 import Admission from "./components/Admission";
 import Event from "./components/Event";
 import Sample from "./components/Sample";
+import Academic from "./components/Academic";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -40,6 +41,10 @@ function App() {
           path: "/admin/notification",
           element: <Sample user={user} />,
         },
+        {
+          path:"/admin/academic",
+          element:<Academic user={user}/>
+        }
       ],
     },
     {

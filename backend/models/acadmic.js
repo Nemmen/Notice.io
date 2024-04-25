@@ -1,21 +1,17 @@
 const mongoose = require("mongoose")
 
-const noticeSchema = new mongoose.Schema({
-	title: {
+const acadmicSchema = new mongoose.Schema({
+	refValue: {
 		type: String,
 		required: true,
 	},
-	reff: {
+	descValue: {
 		type: String,
 		required: true,
 	},
-	description: {
+	dateValue: {
 		type: String,
 		required: true,
-	},
-	date: {
-		type: Date,
-		default: Date.now
 	},
 	postedBy: [{
 		type: mongoose.Schema.Types.ObjectId,
@@ -23,4 +19,4 @@ const noticeSchema = new mongoose.Schema({
 	}]
  })
 
- module.exports = mongoose.model("Notice",noticeSchema)
+ module.exports = mongoose.model("Acadmic",acadmicSchema)

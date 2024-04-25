@@ -11,10 +11,13 @@ app.use(cokkieParser());
 
 app.use(express.json());
 const userRoutes = require("./routes/userRoutes");
+
+const noticeRoutes = require("./routes/noticeRoute");
+
 const port = process.env.PORT || 4000;
 
 app.use("/", userRoutes);
-app.use("/notice", userRoutes);
+app.use("/notice", noticeRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

@@ -19,10 +19,13 @@ const Sample = ({user}) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+   const publishHandle = async() =>{
+
+   }
   const printDocument = async () => {
     const input = divRef.current;
     try{
-      const respone = await axios("http://localhost:9000/notice/unique",data);
+      const respone = await axios.post("http://localhost:9000/notice/unique",data);
       toast.success(respone.data.message)
 
     }catch(err){
@@ -48,7 +51,7 @@ const Sample = ({user}) => {
           className="bg-red-500 hover:bg-red-700 mx-2 text-white font-bold py-2 px-4 rounded"
           onClick={() => printDocument()}
         >
-          Download
+          Download and publish
         </button>
         <button
           className="bg-red-500 hover:bg-red-700 mx-2 text-white font-bold py-2 px-4 rounded"
