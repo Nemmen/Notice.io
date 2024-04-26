@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 
-const { login, signup , getusers } = require("../controller/auth")
+const { login, signup , getusers ,deleteUser } = require("../controller/auth")
 
 const { auth, isStudent, isAdmin } = require("../middleware/auth")
 
@@ -11,6 +11,7 @@ const { auth, isStudent, isAdmin } = require("../middleware/auth")
 router.post("/signup", signup)
 router.post("/login", login)
 router.get("/getusers", getusers)
+router.delete("/:id", deleteUser)
 
 //protected route
 
