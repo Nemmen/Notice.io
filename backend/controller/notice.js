@@ -24,9 +24,10 @@ exports.noticeController = async (req, res) => {
 exports.acadmicController = async (req, res) => {
 	console.log(req.body)
   try {
-    const { dateValue, descValue, refValue, postedBy } = req.body;
+    const { title , dateValue, descValue, refValue, postedBy } = req.body;
 
     const academic = new Acadmic({
+      title,
       refValue,
       descValue,
       dateValue,
@@ -39,6 +40,30 @@ exports.acadmicController = async (req, res) => {
     console.log(err);
   }
 };
+
+exports.uniqueDelete = async (req,res) =>{
+  try{
+    const { id } = req.params;
+    await Notice.findByIdAndDelete(id);
+    const unique = await Notice.find();
+    res.status(200).json({ unique,  message: "Notice Deleted Successfully" });
+
+  }catch(err){
+    res.status(500).json({ message: err.message });
+  }
+}
+
+exports.acadmicDelete = async (req,res) =>{
+  try{
+    const { id } = req.params;
+    await Acadmic.findByIdAndDelete(id);
+    const acadmic = await Acadmic.find();
+    res.status(200).json({ acadmic,  message: "Notice Deleted Successfully" });
+
+  }catch(err){
+    res.status(500).json({ message: err.message });
+  }
+}
 
 exports.getNoticeController = async (req, res) => {
   try {

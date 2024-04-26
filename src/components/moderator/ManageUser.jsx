@@ -9,9 +9,11 @@ import {
 import Chart from "react-apexcharts";
 import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
+import AddUser from "./AddUser";
 
 const ManageUser = () => {
   const [users, setUsers] = useState([]);
+  const [model, setModel] = useState(false);
   const chartConfig = {
     type: "pie",
     width: 380,
@@ -67,18 +69,26 @@ const ManageUser = () => {
   useEffect(() => {
     const getUsers = async () => {
       const response = await axios.get("http://localhost:9000/getusers");
-
       setUsers(response.data.users);
     };
     getUsers();
   }, []);
 
   return (
-    <div className="p-3">
-      <div className="flex flex-wrap gap-3 justify-around items-center">
+    <div className="p-2">
+      {model && (
+        <div className="fixed top-0 left-0  right-0 bottom-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+          <div onClick={()=>setModel((prev)=>!prev)} className="text-white text-4xl shadow-sm  cursor-pointer absolute right-10 top-10">X</div>
+          <div className="bg-white p-4 w-[400px] rounded-lg">
+            <AddUser setModel={setModel}/>
+          </div>
+        </div>
+      
+      )}
+      <div className="flex flex-wrap   justify-around items-center">
         <div>
-          <h1 className="text-2xl font-semibold py-2 ms-2 text-gray-900">
-            Manage Student
+          <h1 className="text-2xl flex justify-between font-semibold py-2 ms-2 text-gray-900">
+            Manage Student <button onClick={()=>setModel((prev)=>!prev)} className="text-white me-2 bg-black hover:bg-slate-500 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Add user</button>
           </h1>
           <table class=" divide-y w-[50%] divide-gray-200 overflow-x-auto">
             <thead class="bg-gray-50">
@@ -161,12 +171,12 @@ const ManageUser = () => {
             </tbody>
           </table>
         </div>
-        <div className="w-[450px] mt-11 bg-white">
-          <div>
+        <div className="w-[450px] mt-11 rounded-lg bg-white">
+          <div className="relative">
             <h1 className="text-2xl  font-semibold py-2 ms-7 text-gray-900">
               Batch Distribution
             </h1>
-            <div className="flex justify-center flex-wrap gap-[10px]">
+            <div className="flex justify-end right-3 text-sm flex-col absolute z-[2] flex-wrap gap-[10px]">
               <p className="text-[#020617]">
                 {" "}
                 <span className="w-[20px] inline-block h-[10px] bg-[#020617]"></span>{" "}
@@ -203,8 +213,8 @@ const ManageUser = () => {
         </div>
       </div>
       <div className="mt-[50px]">
-        <h1 className="text-2xl font-semibold py-2 ms-2 text-gray-900">
-          Manage Admin
+        <h1 className="text-2xl flex justify-between font-semibold py-2 ms-2 text-gray-900">
+          Manage Admin <button onClick={()=>setModel((prev)=>!prev)}  className="text-white me-2 bg-black hover:bg-slate-500 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Add user</button>
         </h1>
         <table class=" divide-y min-w-full divide-gray-200 overflow-x-auto">
           <thead class="bg-gray-50">

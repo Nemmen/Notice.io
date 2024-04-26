@@ -7,6 +7,7 @@ import axios from "axios";
 const Academic = ({ user }) => {
 	const postedBy = user._id;
   const [isEditable, setIsEditable] = useState(false);
+  const [title, setTitle] = useState("Fee notice");
   const [refValue, setRefValue] = useState("Ref. No.: SVGOI/Admin/2024/38");
   const [dateValue, setDateValue] = useState("Dated:29.02.2024");
   const [descValue, setDescValue] = useState(
@@ -17,6 +18,10 @@ const Academic = ({ user }) => {
 
   const handleEditToggle = () => {
     setIsEditable(!isEditable);
+  };
+
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
   };
 
   const handleRefChange = (e) => {
@@ -35,6 +40,7 @@ const Academic = ({ user }) => {
     const input = noticeRef.current;
     try {
 		await axios.post("http://localhost:9000/notice/academic", {
+      title,
 		  refValue,
 		  dateValue,
 		  descValue,
@@ -76,6 +82,17 @@ const Academic = ({ user }) => {
         >
           Download and publish
         </button>
+      </div>
+      <div className="my-4 py-2 text-center">
+        Enter title for the notification :{" "}
+        <input
+          name="title"
+          value={title}
+          className="border border-black p-2"
+          onChange={handleTitle}
+          required
+          type="text"
+        />
       </div>
       <div>
         <div

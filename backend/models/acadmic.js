@@ -1,6 +1,10 @@
 const mongoose = require("mongoose")
 
 const acadmicSchema = new mongoose.Schema({
+	title: {
+		type: String,
+		required: true,
+	},
 	refValue: {
 		type: String,
 		required: true,

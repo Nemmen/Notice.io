@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     },
     batch:{
         type:String,
-        enum:["uniques 1.0","uniques 2.0","uniques 3.0","super 60"]
+        enum:["uniques 1.0","uniques 2.0","uniques 3.0","super 60",""]
     }
  })
 

@@ -105,8 +105,9 @@ const shareViaEmail = async () => {
         Enter title for the notification :{" "}
         <input
           name="title"
-          className="p-2"
+          
           value={data.title}
+          className="border border-black p-2"
           onChange={changeHandler}
           required
           type="text"
